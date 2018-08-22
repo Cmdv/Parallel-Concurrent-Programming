@@ -1,0 +1,114 @@
+name:                Parallel-Concurrent-Programming
+version:             0.1.0.0
+-- synopsis:
+-- description:
+homepage:            https://github.com/Cmdv/Parallel-Concurrent-Programming#readme
+license:             BSD3
+license-file:        LICENSE
+author:              Vincent Orr
+maintainer:          info@cmdv.me
+copyright:           2018 Author name here
+category:            Education
+build-type:          Simple
+cabal-version:       >=1.10
+extra-source-files:  src/Chapter02/Sudoku/Files/sudoku17.1000.txt
+                     src/Chapter02/Sudoku/Files/sudoku17.16000.txt
+                     src/Chapter02/Sudoku/Files/sudoku17.49151.txt
+                     -- chanbench.hs
+                     -- findpar5.hs
+                     -- parlist.hs
+                     -- other/correcter.hs
+                     -- other/arithgame.hs
+                     -- other/game.hs
+                     -- other/README
+                     -- distrib-db/WorkerSample.hs
+                     -- distrib-db/DatabaseSample.hs
+                     -- sudoku-par1.hs
+                     -- sudoku-par2.hs
+                     -- sudoku-par3.hs
+                     -- sudoku-par4.hs
+                     -- kmeans/Makefile
+                     -- timeout2.hs
+                     -- parinfer/benchmark.in
+                     -- tmvar.hs
+                     -- windowman.hs
+                     -- ChangeLog.md
+                     README.md
+
+-- -----------------------------------------------------------------------------
+-- Flags
+
+-- -f llvm: enable -fllvm to GHC; requires LLVM to be installed, but
+-- makes the Repa programs faster
+
+flag llvm
+  default: False
+
+-- -f devil: Enable the image-maniputation programs, which are
+-- disabled by default because they require the devil library which
+-- needs to be installed separately.
+
+flag devil
+  default: False
+
+-- -f cuda: Build the examples that require accelerate-cuda.  These
+-- need the NVidia CUDA tools installed.
+
+flag cuda
+  default: False
+
+-- -f-accelerate: Do not build the examples that require accelerate.
+
+flag accelerate
+  default : True
+
+-- -f-distributed: Do not build the examples that require distributed-process.
+
+flag distributed
+  default : True
+
+-- -f network26: Use network-2.6.  Internal flag; you shouldn't need
+-- to change this.
+
+flag network26
+  default : True
+
+-- -----------------------------------------------------------------------------
+-- CHAPTER 01
+
+executable Parallel-Concurrent-Programming
+  hs-source-dirs:      src
+  main-is:             Main.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5
+
+executable Rpar
+  hs-source-dirs:      src/Chapter02
+  main-is:             Rpar.hs
+  build-depends:       base >= 4.7 && < 5
+                     , time
+                     , parallel
+  ghc-options: -threaded
+  default-language: Haskell2010
+
+executable sudoku1
+  main-is: sudoku1.hs
+  hs-source-dirs: src/Chapter02/Sudoku/
+  other-modules: Sudoku
+  build-depends:   base >= 4.7 && < 5
+                 , parallel
+                 , array
+  default-language: Haskell2010
+
+executable sudoku2
+  main-is: sudoku2.hs
+  hs-source-dirs: src/Chapter02/Sudoku/
+  other-modules: Sudoku
+  ghc-options: -threaded
+               -rtsopts
+               -eventlog
+  build-depends:   base >= 4.7 && < 5
+                 , parallel
+                 , array
+                 , deepseq
+  default-language: Haskell2010
