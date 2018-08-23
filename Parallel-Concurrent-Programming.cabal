@@ -11,9 +11,9 @@ copyright:           2018 Author name here
 category:            Education
 build-type:          Simple
 cabal-version:       >=1.10
-extra-source-files:  src/Chapter02/Sudoku/Files/sudoku17.1000.txt
-                     src/Chapter02/Sudoku/Files/sudoku17.16000.txt
-                     src/Chapter02/Sudoku/Files/sudoku17.49151.txt
+extra-source-files:  files/sudoku17.1000.txt
+                     files/sudoku17.16000.txt
+                     files/sudoku17.49151.txt
                      -- chanbench.hs
                      -- findpar5.hs
                      -- parlist.hs
@@ -74,7 +74,7 @@ flag network26
   default : True
 
 -- -----------------------------------------------------------------------------
--- CHAPTER 01
+-- CHAPTER 02
 
 executable Parallel-Concurrent-Programming
   hs-source-dirs:      src
@@ -111,4 +111,36 @@ executable sudoku2
                  , parallel
                  , array
                  , deepseq
+  default-language: Haskell2010
+
+executable sudoku3
+  main-is: sudoku3.hs
+  hs-source-dirs: src/Chapter02/Sudoku/
+  other-modules: Sudoku
+  ghc-options: -threaded
+               -rtsopts
+               -eventlog
+  build-depends:   base >= 4.7 && < 5
+                 , parallel
+                 , array
+  default-language: Haskell2010
+
+executable sudoku4
+  main-is: sudoku4.hs
+  hs-source-dirs: src/Chapter02/Sudoku/
+  other-modules: Sudoku
+  ghc-options: -threaded
+  build-depends:   base >= 4.7 && < 5
+                 , parallel
+                 , array
+  default-language: Haskell2010
+
+executable sudoku5
+  main-is: sudoku5.hs
+  hs-source-dirs: src/Chapter02/Sudoku/
+  other-modules: Sudoku
+  ghc-options: -threaded
+  build-depends:   base >= 4.7 && < 5
+                 , parallel
+                 , array
   default-language: Haskell2010
