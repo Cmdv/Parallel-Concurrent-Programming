@@ -6,6 +6,9 @@ import Data.Maybe
 import Sudoku
 import System.Environment
 
+-- -------------
+-- this is part of Chapter 03
+
 main :: IO ()
 main = do
   [f] <- getArgs
