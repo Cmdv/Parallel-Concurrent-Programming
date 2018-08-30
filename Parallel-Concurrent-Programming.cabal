@@ -14,6 +14,7 @@ cabal-version:       >=1.10
 extra-source-files:  files/sudoku17.1000.txt
                      files/sudoku17.16000.txt
                      files/sudoku17.49151.txt
+                     src/Chapter03/Kmeans/Makefile
                      -- chanbench.hs
                      -- findpar5.hs
                      -- parlist.hs
@@ -167,7 +168,7 @@ executable strat2
 executable kmeans
   main-is: kmeans.hs
   hs-source-dirs: src/Chapter03/Kmeans/
-  other-modules: KMeansCore
+  other-modules:   KMeansCore
   ghc-options: -threaded
   build-depends:   base >= 4.7 && < 5
                  , parallel ==3.2.*
@@ -178,4 +179,83 @@ executable kmeans
                  , array >= 0.4 && <0.6
                  , bytestring >= 0.9 && < 0.11
                  , vector >= 0.10 && < 0.13
+                 , normaldistribution
+                 , random
+  default-language: Haskell2010
+
+executable GenSamples
+  hs-source-dirs: src/Chapter03/Kmeans/
+  main-is: GenSamples.hs
+  other-modules: KMeansCore
+  build-depends:   base >= 4.7 && < 5
+                 , binary >=0.6.3 && < 0.9
+                 , array >= 0.4 && <0.6
+                 , vector >= 0.10 && < 0.13
+                 , random >= 1.0 && < 1.2
+                 , normaldistribution >= 1.1 && < 1.2
+                 , deepseq >= 1.3 && < 1.5
+                 , bytestring >= 0.9 && < 0.11
+  default-language: Haskell2010
+
+executable rsa
+  hs-source-dirs: src/Chapter03/Rsa/
+  main-is: rsa.hs
+  other-modules: ByteStringCompat
+  build-depends:   base >= 4.7 && < 5
+                 , bytestring >= 0.9 && < 0.11
+                 , deepseq >= 1.3 && < 1.5
+  default-language: Haskell2010
+
+executable rsa1
+  hs-source-dirs: src/Chapter03/Rsa/
+  main-is: rsa1.hs
+  other-modules: ByteStringCompat
+  build-depends:   base >= 4.7 && < 5
+                 , bytestring >= 0.9 && < 0.11
+                 , deepseq >= 1.3 && < 1.5
+                 , parallel
+  default-language: Haskell2010
+
+executable rsa2
+  hs-source-dirs: src/Chapter03/Rsa/
+  main-is: rsa2.hs
+  other-modules: ByteStringCompat
+  build-depends:   base >= 4.7 && < 5
+                 , bytestring >= 0.9 && < 0.11
+                 , deepseq >= 1.3 && < 1.5
+                 , parallel
+  default-language: Haskell2010
+
+-- -----------------------------------------------------------------------------
+-- CHAPTER 04
+
+executable parmonad
+  hs-source-dirs: src/Chapter04/
+  main-is: parmonad.hs
+  build-depends:   base >= 4.7 && < 5
+                 , monad-par >= 0.3.4 && < 0.4
+  ghc-options: -threaded
+  default-language: Haskell2010
+
+executable fwsparse
+  main-is: FwSparse.hs
+  other-modules: SparseGraph MapCompat
+  hs-source-dirs: src/Chapter04/FwSparse/
+  build-depends:   base >= 4.7 && < 5
+                 , random >= 1.0 && < 1.2
+                 , array >= 0.4 && <0.6
+                 , containers >= 0.4 && < 0.6
+  default-language: Haskell2010
+
+executable fwsparse1
+  main-is: FwSparse1.hs
+  other-modules: SparseGraph MapCompat
+  hs-source-dirs: src/Chapter04/FwSparse/
+  build-depends:   base >= 4.7 && < 5
+                 , random >= 1.0 && < 1.2
+                 , array >= 0.4 && <0.6
+                 , containers >= 0.4 && < 0.6
+                 , monad-par >= 0.3.4 && < 0.4
+                 , deepseq >= 1.3 && < 1.5
+  ghc-options: -threaded
   default-language: Haskell2010
